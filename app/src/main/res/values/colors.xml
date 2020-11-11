@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="BG_COLOR_TITLE">#ff646661</color>
+    <color name="DIMGREY">#ff696969</color>
+    <color name="GREEN_DARK">#ff52762b</color>
+    <color name="GREEN_TEXT">#ff426418</color>
+    <color name="WHITE">#ffffffff</color>
+    <color name="blue">#ff499BF7</color>
+</resources>

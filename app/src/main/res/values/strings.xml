@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="EQUIPMENT">devide:</string>
+    <string name="HOTSPOT">hotspot</string>
+    <string name="ROUTER">router</string>
+    <string name="app_name">SDK</string>
+    <string name="btnok">save</string>
+    <string name="btnsearch">get wifi message</string>
+    <string name="lblselectprogram">skin test</string>
+</resources>

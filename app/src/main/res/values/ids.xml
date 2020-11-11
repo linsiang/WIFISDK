@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Copyright (C) 2007 The Android Open Source Project
+
+     Licensed under the Apache License, Version 2.0 (the "License");
+     you may not use this file except in compliance with the License.
+     You may obtain a copy of the License at
+  
+          http://www.apache.org/licenses/LICENSE-2.0
+  
+     Unless required by applicable law or agreed to in writing, software
+     distributed under the License is distributed on an "AS IS" BASIS,
+     WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+     See the License for the specific language governing permissions and
+     limitations under the License.
+-->
+
+<resources>
+  <item type="id" name="sev00" />
+  <item type="id" name="sev01" />
+  <item type="id" name="sev02" />
+  <item type="id" name="sev03" />
+  <item type="id" name="sev04" />
+  <item type="id" name="sev05" />
+  <item type="id" name="sev06" />
+  <item type="id" name="sev07" />
+  <item type="id" name="sev08" />
+  <item type="id" name="sev09" />
+  <item type="id" name="sev10" />
+  <item type="id" name="sev11" />
+  <item type="id" name="sev12" />
+  <item type="id" name="sev13" />
+  <item type="id" name="sev14" />
+  <item type="id" name="sev15" />
+  <item type="id" name="sev16" />
+  <item type="id" name="sev17" />
+  <item type="id" name="sev18" />
+  <item type="id" name="sev19" />
+  <item type="id" name="sev20" />
+  <item type="id" name="sev21" />
+  <item type="id" name="sev22" />
+  <item type="id" name="sev23" />
+  <item type="id" name="sev24" />
+  <item type="id" name="sev25" />
+  <item type="id" name="sev26" />
+  <item type="id" name="sev27" />
+  <item type="id" name="sev28" />
+  <item type="id" name="sev29" />
+  <item type="id" name="sev30" />
+  <item type="id" name="sev31" />
+  <item type="id" name="sev32" />
+  <item type="id" name="sev33" />
+  <item type="id" name="sev34" />
+  <item type="id" name="sev35" />
+  <item type="id" name="sev36" />
+  <item type="id" name="sev37" />
+  <item type="id" name="sev38" />
+  <item type="id" name="sev39" /> 
+ 
+                      
+</resources>
