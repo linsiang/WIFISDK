@@ -29,7 +29,6 @@
         android:requestLegacyExternalStorage="true"
         tools:targetApi="q"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".MainActivity"/>
         <activity
             android:name=".CameraSetting"
             android:configChanges="orientation|keyboardHidden|screenSize"

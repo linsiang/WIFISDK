@@ -3,6 +3,7 @@
     <CLASSES>
       <root url="file://D:/.gradle/caches/transforms-2/files-2.1/0aac53c8e73a55478df00d9098f9aca4/res" />
       <root url="jar://D:/.gradle/caches/transforms-2/files-2.1/0aac53c8e73a55478df00d9098f9aca4/jars/classes.jar!/" />
+      <root url="file://D:/.gradle/caches/transforms-2/files-2.1/0aac53c8e73a55478df00d9098f9aca4/AndroidManifest.xml" />
     </CLASSES>
     <JAVADOC>
       <root url="jar://D:/.gradle/caches/modules-2/files-2.1/com.github.f0ris.sweetalert/library/1.6.2/381c6622f0d2400443ff4b0ec95f496878e58b20/library-1.6.2-javadoc.jar!/" />
