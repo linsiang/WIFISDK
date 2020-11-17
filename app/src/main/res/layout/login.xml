@@ -1,25 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:id="@+id/loginRoot"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-    android:orientation="vertical" >
-	
-	<RelativeLayout
-		android:id="@+id/rl_login_loginroot"
-		android:layout_width="fill_parent"
-		android:layout_height="fill_parent"
-		android:focusable="true" 
- 		android:focusableInTouchMode="true"  
-		android:background="@drawable/bg">
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/bg"
+    android:orientation="vertical">
 
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
 
-		<GridView
-			android:id="@+id/GridView_toolbar"
-			android:layout_height="wrap_content"
-			android:layout_width="fill_parent"
-			android:layout_alignParentBottom="true" />
-		
-	</RelativeLayout>	
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_above="@+id/main_button">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:src="@drawable/settings" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:src="@drawable/language" />
+
+                <ImageView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:src="@drawable/camera" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/main_button"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/main_settings"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:background="@drawable/main_button_style"
+                android:text="@string/settings"
+                android:textAllCaps="false"
+                android:textColor="@color/WHITE" />
+
+            <Button
+                android:id="@+id/main_language"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:background="@drawable/main_button_style"
+                android:text="@string/language"
+                android:textAllCaps="false"
+                android:textColor="@color/WHITE" />
+
+            <Button
+                android:id="@+id/main_video"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_weight="1"
+                android:background="@drawable/main_button_style"
+                android:text="@string/video"
+                android:textAllCaps="false"
+                android:textColor="@color/WHITE" />
+        </LinearLayout>
+    </RelativeLayout>
+
 </LinearLayout>
 

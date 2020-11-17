@@ -208,7 +208,8 @@ public class VideoSDK extends Activity {
         videobuttonStart = findViewById(R.id.face_startbtn);
         videobuttonStop = findViewById(R.id.face_stopbtn);
         toMain.setOnClickListener(v -> {
-            startActivity(new Intent(this, MainActivity.class));
+            unregisterReceiver(mHomeKeyEventReceiver);
+            startActivity(new Intent(this, FacedetectActivity.class));
             finish();
         });
 

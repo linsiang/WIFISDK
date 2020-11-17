@@ -1,0 +1,8 @@
+<resources>
+
+
+
+    <style name="Theme.WIFISDK.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar" />
+
+    <style name="Theme.WIFISDK.PopupOverlay" parent="ThemeOverlay.AppCompat.Light" />
+</resources>

@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@drawable/splash"
     android:orientation="vertical">
 
@@ -143,30 +143,29 @@
 
             <RadioButton
                 android:id="@+id/AP"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="2.0dip"
                 android:layout_marginRight="2.0dip"
-                android:text="AP"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content" />
+                android:text="AP" />
 
             <RadioButton
                 android:id="@+id/ROUTER"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="2.0dip"
                 android:layout_marginRight="2.0dip"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
                 android:text="@string/ROUTER" />
 
             <RadioButton
                 android:id="@+id/HOTSPOT"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="2.0dip"
                 android:layout_marginRight="2.0dip"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
                 android:text="@string/HOTSPOT" />
 
         </RadioGroup>
-
 
 
     </LinearLayout>
@@ -174,34 +173,34 @@
     <LinearLayout
         android:id="@+id/layout_yesbtn"
         android:layout_width="fill_parent"
-        android:layout_height="40.0dip"
+        android:layout_height="wrap_content"
         android:layout_marginTop="10.0dip"
         android:orientation="horizontal"
         android:visibility="visible">
 
         <Button
             android:id="@+id/btn_wifi_searchdevice"
-            android:layout_width="150.0dip"
-            android:layout_height="40.0dip"
-            android:layout_marginStart="20.0dip"
-            android:layout_marginEnd="5.0dip"
-            android:layout_weight="1.0"
-            android:background="@drawable/selector_base_button"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginStart="50dp"
+            android:layout_marginEnd="10dp"
+            android:layout_weight="1"
+            android:background="@drawable/main_button_toggle"
             android:text="@string/btnsearch"
-            android:textColor="@drawable/selector_text_color"
-            android:textSize="15.0sp" />
+            android:textSize="16sp" />
 
         <Button
             android:id="@+id/btn_wifi_confirm"
-            android:layout_width="150.0dip"
-            android:layout_height="40.0dip"
-            android:layout_marginStart="5.0dip"
-            android:layout_marginEnd="20.0dip"
-            android:layout_weight="1.0"
-            android:background="@drawable/selector_base_button"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="50dp"
+            android:layout_weight="1"
+
+            android:background="@drawable/main_button_toggle"
+
             android:text="@string/btnok"
-            android:textColor="@drawable/selector_text_color"
-            android:textSize="15.0sp" />
+            android:textSize="16sp" />
     </LinearLayout>
 
 
@@ -231,17 +230,17 @@
 
             <RadioButton
                 android:id="@+id/x50"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="5.0dip"
                 android:text="50X"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
                 android:textColor="#ff0000ff" />
 
             <RadioButton
                 android:id="@+id/x200"
-                android:text="200X"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="200X"
                 android:textColor="#ff0000ff" />
         </RadioGroup>
     </LinearLayout>
@@ -272,24 +271,24 @@
 
             <RadioButton
                 android:id="@+id/bm558"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="5.0dip"
                 android:text="BM558"
-                android:layout_height="wrap_content"
-                android:layout_width="wrap_content"
                 android:textColor="#ff0000ff" />
 
             <RadioButton
                 android:id="@+id/bm999"
-                android:text="BM999"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BM999"
                 android:textColor="#ff0000ff" />
 
             <RadioButton
                 android:id="@+id/bm189a"
-                android:text="BM189A"
-                android:layout_height="wrap_content"
                 android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="BM189A"
                 android:textColor="#ff0000ff" />
         </RadioGroup>
     </LinearLayout>

@@ -27,8 +27,11 @@
     <application
         android:icon="@drawable/home_logo_hair"
         android:requestLegacyExternalStorage="true"
-        tools:targetApi="q"
-        tools:ignore="AllowBackup,GoogleAppIndexingWarning">
+        tools:ignore="AllowBackup,GoogleAppIndexingWarning"
+        tools:targetApi="q">
+        <activity android:name=".BaseActivity">
+
+        </activity>
         <activity
             android:name=".CameraSetting"
             android:configChanges="orientation|keyboardHidden|screenSize"
