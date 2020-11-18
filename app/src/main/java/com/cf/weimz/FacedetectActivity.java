@@ -1,26 +1,15 @@
 package com.cf.weimz;
 
 import java.io.File;
-import java.util.ArrayList;
-import java.util.HashMap;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
 import android.os.Environment;
 import android.util.Log;
-import android.view.Gravity;
 import android.view.KeyEvent;
-import android.view.View;
-import android.view.Window;
 import android.view.WindowManager;
-import android.view.View.OnClickListener;
-import android.widget.AdapterView;
 import android.widget.Button;
-import android.widget.GridView;
-import android.widget.SimpleAdapter;
-import android.widget.AdapterView.OnItemClickListener;
 
 public class FacedetectActivity extends BaseActivity {
     private Button main_settings;
