@@ -30,14 +30,10 @@ import android.view.Window;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
-
-////////////////////Video.jar -->libs////////////////
 import com.cf.cf685.Video;
 
-/////////////////////////////////////////////////////
 public class VideoSDK extends Activity {
 
     public String picpath;
@@ -209,28 +205,10 @@ public class VideoSDK extends Activity {
         videobuttonStop = findViewById(R.id.face_stopbtn);
         toMain.setOnClickListener(v -> {
             unregisterReceiver(mHomeKeyEventReceiver);
-            startActivity(new Intent(this, FacedetectActivity.class));
+            startActivity(new Intent(getApplicationContext(), FacedetectActivity.class));
             finish();
         });
 
-
-        mSurfaceView.setOnTouchListener((View.OnTouchListener) (v, event) -> {
-            if (event.getAction() == MotionEvent.ACTION_DOWN) {
-                if (isAll) {
-                    Log.e("videosdk", "onCreate: 点击退出全屏。。。" );
-                    mSurfaceView.setLayoutParams(mrLayout);
-                    isAll=false;
-                    return false;
-                } else {
-                    Log.e("videosdk", "onCreate: 点击设置全屏、、、" );
-                    mrLayout = mSurfaceView.getLayoutParams();
-                    mSurfaceView.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
-                    isAll = true;
-                    return true;
-                }
-            }
-             return true;
-        });
 
 
         videobuttonCapture.setOnClickListener(new Button.OnClickListener() {
@@ -267,10 +245,6 @@ public class VideoSDK extends Activity {
 
         picpath = getSDPath() + "/10000/"; //  Snapshot folder
         VideoDecoder = new Video(mSurfaceView, handler, picpath, "192.168.1.1");  //IP , do not modify
-        Log.e("surface init ---->>>>>>", "onCreate: 这里创建surface！");
-        mSurfaceView.setVisibility(View.GONE);
-        Log.e("surface stop? -->>>>>>", "onCreate: stopsurfaceviewc---");
-        mSurfaceView.setVisibility(View.VISIBLE);
         //////////if you want to use router or hotspot mode!!!///////////////////////////////////
         //////////////////////////////////////////////////////////////////////
         SharedPreferences sharedata = getSharedPreferences("tcfcameraN", 0);
@@ -329,13 +303,10 @@ public class VideoSDK extends Activity {
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_HOME) {
-
             unregisterReceiver(mHomeKeyEventReceiver);
-
             VideoDecoder.StopKeyThread(); //stop key  thread
             VideoDecoder.StopVideo(); //stop  video thread
-            //   StopCodec();
-
+            // StopCodec();
             Intent intent = new Intent();
             intent.setClass(VideoSDK.this, FacedetectActivity.class);
             startActivity(intent);

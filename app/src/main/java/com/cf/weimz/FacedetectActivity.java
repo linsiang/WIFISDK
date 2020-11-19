@@ -1,7 +1,6 @@
 package com.cf.weimz;
 
 import java.io.File;
-
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -10,7 +9,6 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.Button;
-
 public class FacedetectActivity extends BaseActivity {
     private Button main_settings;
     private Button main_language;
@@ -59,8 +57,6 @@ public class FacedetectActivity extends BaseActivity {
             startActivity(intent);
             finish();
         });
-
-
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
