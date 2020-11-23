@@ -8,7 +8,6 @@ android {
         minSdkVersion 21
         targetSdkVersion 30
     }
-
     buildTypes {
         release {
             minifyEnabled true        //
@@ -20,7 +19,16 @@ android {
         targetCompatibility = '1.8'
     }
 }
+static def releaseTime() {
+    return new Date().format("yyyy_MM_dd_hh_mm", TimeZone.getTimeZone("GMT+08:00"))   //
+}
 
+android.applicationVariants.all { variant ->
+    variant.outputs.all {
+        // 名称_android_版本号.apk
+        outputFileName = "WIFI_DEMO_${versionName}_${releaseTime()}.apk"
+    }
+}
 dependencies {
     implementation 'com.github.f0ris.sweetalert:library:1.6.2'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'

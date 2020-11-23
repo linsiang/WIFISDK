@@ -1,7 +1,5 @@
 package com.cf.weimz;
-
 import java.io.File;
-
 import android.content.Intent;
 import android.content.pm.ActivityInfo;
 import android.os.Bundle;
@@ -10,12 +8,10 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.Button;
-
 public class FacedetectActivity extends BaseActivity {
     private Button main_settings;
     private Button main_language;
     private Button main_video;
-
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,7 +30,6 @@ public class FacedetectActivity extends BaseActivity {
         main_language.setOnClickListener(v -> {
             if (ReadLanguageConfig() == 1) {
                 SaveLanguageConfig(0);
-
             } else if (ReadLanguageConfig() == 0) {
                 SaveLanguageConfig(1);
             }
@@ -59,8 +54,6 @@ public class FacedetectActivity extends BaseActivity {
             startActivity(intent);
             finish();
         });
-
-
     }
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {

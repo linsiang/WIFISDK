@@ -28,10 +28,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.Window;
 import android.view.WindowManager;
-import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.RelativeLayout;
-import android.widget.Toast;
+import android.widget.*;
 
 
 ////////////////////Video.jar -->libs////////////////
@@ -51,7 +48,7 @@ public class VideoSDK extends Activity {
     boolean running = false;
     public SurfaceView mSurfaceView;
     boolean isScale = true;
-    private Button toMain;
+    private ImageButton toMain;
     public String CurrentJPGFile;
     private ViewGroup.LayoutParams mrLayout;
     private boolean isAll = false;
@@ -65,13 +62,11 @@ public class VideoSDK extends Activity {
             if (action.equals(Intent.ACTION_CLOSE_SYSTEM_DIALOGS)) {
                 String reason = intent.getStringExtra(SYSTEM_REASON);
                 if (TextUtils.equals(reason, SYSTEM_HOME_KEY)) {
-
                     Log.e("iMVR", "onReceive!");
                     unregisterReceiver(mHomeKeyEventReceiver);
                     VideoDecoder.StopKeyThread();
                     VideoDecoder.StopVideo();
                     //   StopCodec();
-
                     Intent intentM = new Intent();
                     intentM.setClass(VideoSDK.this, FacedetectActivity.class);
                     startActivity(intentM);
@@ -131,7 +126,6 @@ public class VideoSDK extends Activity {
                 Bitmap b = BitmapFactory.decodeFile(filename); //show picture！
                 mypictureView.setImageBitmap(b);
                 Log.e("iMVR", "============msg.what==6=================");
-
             }
             if (msg.what == 5) {
                 int oil = msg.getData().getInt("oil");
@@ -217,19 +211,19 @@ public class VideoSDK extends Activity {
         mSurfaceView.setOnTouchListener((View.OnTouchListener) (v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 if (isAll) {
-                    Log.e("videosdk", "onCreate: 点击退出全屏。。。" );
+                    Log.e("videosdk", "onCreate: 点击退出全屏。。。");
                     mSurfaceView.setLayoutParams(mrLayout);
-                    isAll=false;
+                    isAll = false;
                     return false;
                 } else {
-                    Log.e("videosdk", "onCreate: 点击设置全屏、、、" );
+                    Log.e("videosdk", "onCreate: 点击设置全屏、、、");
                     mrLayout = mSurfaceView.getLayoutParams();
                     mSurfaceView.setLayoutParams(new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.MATCH_PARENT, RelativeLayout.LayoutParams.MATCH_PARENT));
                     isAll = true;
                     return true;
                 }
             }
-             return true;
+            return true;
         });
 
 
