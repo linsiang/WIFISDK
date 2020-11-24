@@ -22,7 +22,7 @@
         android:resizeable="true"
         android:smallScreens="true" />
     <application
-        android:icon="@drawable/home_logo_hair"
+        android:icon="@drawable/appicon1"
         android:requestLegacyExternalStorage="true"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning"
         tools:targetApi="q">

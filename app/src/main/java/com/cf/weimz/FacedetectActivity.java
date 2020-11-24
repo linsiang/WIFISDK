@@ -8,19 +8,27 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.WindowManager;
 import android.widget.Button;
+import android.widget.ImageButton;
+
 public class FacedetectActivity extends BaseActivity {
     private Button main_settings;
     private Button main_language;
     private Button main_video;
+    private ImageButton wifiButton;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         this.setRequestedOrientation(ActivityInfo.SCREEN_ORIENTATION_LANDSCAPE);
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON, WindowManager.LayoutParams.FLAG_KEEP_SCREEN_ON);
-        setContentView(R.layout.login);
+        setContentView(R.layout.activity_main);
         main_settings = findViewById(R.id.main_settings);
         main_language = findViewById(R.id.main_language);
         main_video = findViewById(R.id.main_video);
+        wifiButton = findViewById(R.id.gotosystemwifi);
+        wifiButton.setOnClickListener(v->{
+            startActivity(new Intent("android.settings.WIFI_SETTINGS"));
+        });
+
         main_settings.setOnClickListener(v -> {
             Intent intent1 = new Intent();
             intent1.setClass(FacedetectActivity.this, CameraSetting.class);

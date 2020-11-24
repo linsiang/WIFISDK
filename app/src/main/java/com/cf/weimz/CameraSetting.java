@@ -271,12 +271,11 @@ public class CameraSetting extends Activity {
                 Log.e("iMVR", "=======setwifiinfoï¼š======:" + mode);
                 int ret = TcpSender.setwifiinfo(mode, g_wifichannel, g_wifissid, g_wifipwd);
                 Toast.makeText(CameraSetting.this, ret + "", Toast.LENGTH_SHORT).show();
-                if (ret == 1) {
+                if (ret == 0) {
                     SaveSSID_PWD();
                     toast = Toast.makeText(getApplicationContext(), "save successful", Toast.LENGTH_LONG);
                     toast.setGravity(Gravity.CENTER, 0, 0);
                     toast.show();
-
                 } else {
                     toast = Toast.makeText(getApplicationContext(), "failed", Toast.LENGTH_LONG);
 

@@ -165,7 +165,7 @@ public class VideoSDK extends Activity {
             /**
              * when use the BM999 you may use those message,
              */
-    /*      if (msg.what == 20) {  // left button
+          if (msg.what == 20) {  // left button
                 Log.e("iMVR", "============msg.what==20=================");
             }
             if (msg.what == 21) { //  right button
@@ -173,7 +173,7 @@ public class VideoSDK extends Activity {
             }
             if (msg.what == 22) { //delete button
                 Log.e("iMVR", "============msg.what==22=================");
-            }*/
+            }
         }
     };
 
@@ -198,15 +198,16 @@ public class VideoSDK extends Activity {
         videobuttonCapture = findViewById(R.id.face_capturebtn);
         toMain = findViewById(R.id.toMain);
         mypictureView = findViewById(R.id.mypicture);
-        mypictureView.setVisibility(View.VISIBLE);
         videobuttonStart = findViewById(R.id.face_startbtn);
         videobuttonStop = findViewById(R.id.face_stopbtn);
         toMain.setOnClickListener(v -> {
             unregisterReceiver(mHomeKeyEventReceiver);
+        //    VideoDecoder.StopKeyThread();
+        //    VideoDecoder.StopVideo();
+       //     running = false;
             startActivity(new Intent(this, FacedetectActivity.class));
             finish();
         });
-
 
         mSurfaceView.setOnTouchListener((View.OnTouchListener) (v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
@@ -261,10 +262,10 @@ public class VideoSDK extends Activity {
 
         picpath = getSDPath() + "/10000/"; //  Snapshot folder
         VideoDecoder = new Video(mSurfaceView, handler, picpath, "192.168.1.1");  //IP , do not modify
-        Log.e("surface init ---->>>>>>", "onCreate: 这里创建surface！");
+/*        Log.e("surface init ---->>>>>>", "onCreate: 这里创建surface！");
         mSurfaceView.setVisibility(View.GONE);
         Log.e("surface stop? -->>>>>>", "onCreate: stopsurfaceviewc---");
-        mSurfaceView.setVisibility(View.VISIBLE);
+        mSurfaceView.setVisibility(View.VISIBLE);*/
         //////////if you want to use router or hotspot mode!!!///////////////////////////////////
         //////////////////////////////////////////////////////////////////////
         SharedPreferences sharedata = getSharedPreferences("tcfcameraN", 0);
@@ -309,7 +310,7 @@ public class VideoSDK extends Activity {
         @Override
         public void run() {
             try {
-                Thread.sleep(700);  //Most mobile phones 500 can be realized, and some tablet phones can be set to 700
+                Thread.sleep(500);  //Most mobile phones 500 can be realized, and some tablet phones can be set to 700
                 VideoDecoder.InitCodec();
             } catch (Exception e) {
                 e.printStackTrace();
