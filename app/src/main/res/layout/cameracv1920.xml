@@ -1,128 +1,134 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:id="@+id/container"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
 
-    android:orientation="horizontal"
-    tools:context="com.cf.weimz.VideoSDK"
-    tools:ignore="MergeRootFrame">
-
-    <LinearLayout
-        android:id="@+id/usrmeeting_content_image1"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal"
-        >
-
-        <RelativeLayout
-            android:id="@+id/usrmeeting_end0"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            >
-                <SurfaceView
-                    android:id="@+id/surfaceView1"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="0dp"
-                    android:layout_marginTop="0dp"
-                    android:layout_marginEnd="1dp"
-                    android:background="@drawable/border"
-                    android:layout_marginBottom="0dp"
-                    android:text="" />
-
-
-        </RelativeLayout>
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="3"
-            android:orientation="vertical"
-            >
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="horizontal">
-                 <TextView
-                     android:layout_width="0dp"
-                     android:layout_height="wrap_content"
-                     android:layout_weight="1"
-                     />
-                <ImageButton
-                    android:id="@+id/toMain"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:background="@drawable/return_mainxml"
-                    android:text="返回"
-                    android:layout_marginEnd="10dp"
-                    />
-
-            </LinearLayout>
-            <ImageView
-                android:id="@+id/mypicture"
-                android:layout_width="60dp"
-                android:layout_height="60dp"
-                android:layout_gravity="center"
-                android:background="@drawable/picture_pre"
-                android:text="" />
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
-                tools:ignore="NestedWeights">
-            </LinearLayout>
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:orientation="vertical"
-              >
-                <Button
-                    android:id="@+id/face_startbtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginStart="5dp"
-                    android:text="@string/start_video"
-                    style="@style/dialog_blue_button"
-                    android:textAllCaps="false"
-                    android:elevation="10dp"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
-
-                <Button
-                    android:id="@+id/face_stopbtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:text="@string/stop_video"
-                    style="@style/dialog_blue_button"
-                    android:textAllCaps="false"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
-
-                <Button
-                    android:id="@+id/face_capturebtn"
-                    android:layout_width="match_parent"
-                    android:layout_height="30dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginStart="5dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    android:text="@string/hand_capture"
-                    style="@style/dialog_blue_button"
-                    android:textAllCaps="false"
-                    android:textSize="16sp"
-                    android:textStyle="bold"/>
-
-            </LinearLayout>
-
-
-        </LinearLayout>
-
-    </LinearLayout>
+              android:orientation="horizontal"
+              tools:context="com.cf.weimz.VideoSDK"
+              tools:ignore="MergeRootFrame">
+	
+	<LinearLayout
+			android:id="@+id/usrmeeting_content_image1"
+			android:layout_width="match_parent"
+			android:layout_height="match_parent"
+			android:orientation="horizontal"
+	>
+		
+		<RelativeLayout
+				android:id="@+id/usrmeeting_end0"
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_weight="1"
+		>
+			<SurfaceView
+					android:id="@+id/surfaceView1"
+					android:layout_width="match_parent"
+					android:layout_height="match_parent"
+					android:layout_marginStart="0dp"
+					android:layout_marginTop="0dp"
+					android:layout_marginEnd="1dp"
+					android:background="@drawable/border"
+					android:layout_marginBottom="0dp"
+					android:text=""/>
+		
+		
+		</RelativeLayout>
+		<LinearLayout
+				android:layout_width="match_parent"
+				android:layout_height="match_parent"
+				android:layout_weight="3"
+				android:orientation="vertical"
+		>
+			<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="horizontal">
+				<Button
+						android:id="@+id/test_trash"
+						android:layout_width="wrap_content"
+						android:layout_height="wrap_content"
+						android:text="循环创建和销毁"
+				/>
+				<TextView
+						android:layout_width="0dp"
+						android:layout_height="wrap_content"
+						android:layout_weight="1"
+				/>
+				<ImageButton
+						android:id="@+id/toMain"
+						android:layout_width="30dp"
+						android:layout_height="30dp"
+						android:background="@drawable/return_mainxml"
+						android:text="返回"
+						android:layout_marginEnd="10dp"
+				/>
+			
+			</LinearLayout>
+			<ImageView
+					android:id="@+id/mypicture"
+					android:layout_width="60dp"
+					android:layout_height="60dp"
+					android:layout_gravity="center"
+					android:background="@drawable/picture_pre"
+					android:text=""/>
+			<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="0dp"
+					android:layout_weight="1"
+					tools:ignore="NestedWeights">
+			</LinearLayout>
+			<LinearLayout
+					android:layout_width="match_parent"
+					android:layout_height="wrap_content"
+					android:orientation="vertical"
+			>
+				<Button
+						android:id="@+id/face_startbtn"
+						android:layout_width="match_parent"
+						android:layout_height="30dp"
+						android:layout_marginEnd="10dp"
+						android:layout_marginStart="5dp"
+						android:text="@string/start_video"
+						style="@style/dialog_blue_button"
+						android:textAllCaps="false"
+						android:elevation="10dp"
+						android:textSize="16sp"
+						android:textStyle="bold"/>
+				
+				<Button
+						android:id="@+id/face_stopbtn"
+						android:layout_width="match_parent"
+						android:layout_height="30dp"
+						android:layout_marginEnd="10dp"
+						android:layout_marginStart="5dp"
+						android:layout_marginTop="5dp"
+						android:text="@string/stop_video"
+						style="@style/dialog_blue_button"
+						android:textAllCaps="false"
+						android:textSize="16sp"
+						android:textStyle="bold"/>
+				
+				<Button
+						android:id="@+id/face_capturebtn"
+						android:layout_width="match_parent"
+						android:layout_height="30dp"
+						android:layout_marginEnd="10dp"
+						android:layout_marginStart="5dp"
+						android:layout_marginTop="5dp"
+						android:layout_marginBottom="5dp"
+						android:text="@string/hand_capture"
+						style="@style/dialog_blue_button"
+						android:textAllCaps="false"
+						android:textSize="16sp"
+						android:textStyle="bold"/>
+			
+			</LinearLayout>
+		
+		
+		</LinearLayout>
+	
+	</LinearLayout>
 </LinearLayout>
 

@@ -104,7 +104,7 @@ public class Video {
         System.loadLibrary("iMVR");
     }
 
-    ExecutorService fixedThreadPool = Executors.newFixedThreadPool(1);
+    ExecutorService fixedThreadPool = Executors.newCachedThreadPool();
 
     public Bitmap convertToBitmap(String path, int w, int h) {
         BitmapFactory.Options opts = new BitmapFactory.Options();
@@ -156,7 +156,10 @@ public class Video {
 
         File destDir2 = new File(bmppath);
         if (!destDir2.exists()) {
-            destDir2.mkdirs();
+            if (destDir2.mkdirs()) {
+                Log.e("IMVR", "SetCapturePath: create dir");
+            }
+            ;
         }
     }
 
@@ -176,7 +179,6 @@ public class Video {
         return Setip(ip);
     }
 
-
     public void SetNewDevice(boolean newdevice) {
         g_isNewDevice = newdevice;
     }
@@ -190,7 +192,7 @@ public class Video {
     }
 
     public int FindDevice() {
-        int findevice = 0;
+        int findevice;
         byte[] ip = new byte[16];
         findevice = SearchDevice(ip);
         if (findevice == 1) {
@@ -245,7 +247,6 @@ public class Video {
         capturethread = new Thread(m_keycapture);
         capturethread.setPriority(Thread.MAX_PRIORITY);
         capturethread.start();
-
         StartTFJPGThread();
     }
 
@@ -269,7 +270,7 @@ public class Video {
                 jpgserver.close();
                 jpgserver = null;
             }
-        } catch (IOException e) {
+        } catch (IOException ignored) {
         }
     }
 
@@ -305,7 +306,6 @@ public class Video {
     @SuppressLint("NewApi")
     private void OpenDecoder() throws IOException {
         Log.e("iMVR", "videowidth:" + videowidth + "videoheight:" + videoheight);
-
         mCodec = MediaCodec.createDecoderByType(MIME_TYPE);
         MediaFormat mediaFormat = MediaFormat.createVideoFormat(MIME_TYPE,
                 videowidth, videoheight);
@@ -321,17 +321,19 @@ public class Video {
             mCodec.release();
             mCodec = null;
         }
+        ;
     }
 
+    MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
     @SuppressLint("NewApi")
     public void onFrame(byte[] buf, int offset, int length) {
         //  Log.e("onframe :", "onFrame: 正在循环解码！");
         try {
-            ByteBuffer[] inputBuffers = mCodec.getInputBuffers();
-            //   int inputBufferIndex = mCodec.dequeueInputBuffer(-1);
-            int inputBufferIndex = mCodec.dequeueInputBuffer(0);
+            // ByteBuffer[] inputBuffers = mCodec.getInputBuffers();
+            // int inputBufferIndex = mCodec.dequeueInputBuffer(0);
+            int inputBufferIndex = mCodec.dequeueInputBuffer(-1);
             if (inputBufferIndex >= 0) {
-                ByteBuffer inputBuffer = inputBuffers[inputBufferIndex];
+                ByteBuffer inputBuffer = mCodec.getInputBuffer(inputBufferIndex);
                 inputBuffer.clear();
                 inputBuffer.put(buf, offset, length);
                 mCodec.queueInputBuffer(inputBufferIndex, 0, length, mCount * 1000000 / 20, 0);
@@ -341,7 +343,7 @@ public class Video {
             }
             // Get output buffer index
             fixedThreadPool.execute(() -> {
-                MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
+                //   MediaCodec.BufferInfo bufferInfo = new MediaCodec.BufferInfo();
                 int outputBufferIndex = mCodec.dequeueOutputBuffer(bufferInfo, 0);
                 while (outputBufferIndex >= 0) {
                     mCodec.releaseOutputBuffer(outputBufferIndex, true);
@@ -512,16 +514,18 @@ public class Video {
     }
 
     Runnable readFile = new Runnable() {
+        int bytesRead = 0;
+        InputStream is = null;
 
         @Override
         public void run() {
             Socket sock = null;
-            InputStream is = null;
+
             OutputStream os = null;
             int nalLen;
             boolean bFirst = true;
             boolean bFindPPS = true;
-            int bytesRead = 0;
+
             int NalBufUsed = 0;
             int SockBufUsed = 0;
             boolean findiframe = false;
@@ -580,13 +584,11 @@ public class Video {
                     int mHour = c.get(Calendar.HOUR_OF_DAY);
                     int mMinute = c.get(Calendar.MINUTE);
                     int mSecond = c.get(Calendar.SECOND);
-
                     SockBuf[4] = (byte) (mYear - 2000);
                     SockBuf[5] = (byte) mMonth;
                     SockBuf[6] = (byte) mDay;
                     SockBuf[7] = (byte) mHour;
                     SockBuf[8] = (byte) mMinute;
-
                     SockBuf[9] = (byte) mSecond;
                     SockBuf[10] = (byte) 11;
                     if (g_isNewDevice)
@@ -599,10 +601,8 @@ public class Video {
             } catch (IOException e) {
                 Log.e("iMVR", "------------------read-----");
             }
-
             InitDecoder();
             mflag = true;
-
             while (mflag) {
                 try {
                     bytesRead = is.read(SockBuf, 0, SockBuf.length);
@@ -610,15 +610,12 @@ public class Video {
                 } catch (UnknownHostException e) {
                     e.printStackTrace();
                     Log.e("iMVR", "sock err 1.\n");
-                    break;
                 } catch (IOException e) {
                     e.printStackTrace();
                     Log.e("iMVR", "sock err 2.\n");
-                    break;
                 } catch (Exception e) {
                     e.printStackTrace();
                     Log.e("iMVR", "sock err 3.\n");
-                    break;
                 }
                 SockBufUsed = 0;
 
@@ -685,10 +682,10 @@ public class Video {
                                             MYCAP = 0;
                                     }
 
-                                    //  	Log.e("iMVR","[0]:"+sps[0]+"[1]:"+sps[1]+"[2]:"+sps[2]+"[3]:"+sps[3]+"[4]:"+sps[4]+"length:"+spslen);
-                                    //   	Log.e("iMVR","[0]:"+pps[0]+"[1]:"+pps[1]+"[2]:"+pps[2]+"[3]:"+pps[3]+"[4]:"+pps[4]+"length:"+ppslen);
+                                    // Log.e("iMVR","[0]:"+sps[0]+"[1]:"+sps[1]+"[2]:"+sps[2]+"[3]:"+sps[3]+"[4]:"+sps[4]+"length:"+spslen);
+                                    // Log.e("iMVR","[0]:"+pps[0]+"[1]:"+pps[1]+"[2]:"+pps[2]+"[3]:"+pps[3]+"[4]:"+pps[4]+"length:"+ppslen);
 
-                                    //   	DecoderNal(sps, spslen, mPixel);
+                                    //  DecoderNal(sps, spslen, mPixel);
                                     //	buffer.position(0);
                                     //	VideoBit.copyPixelsFromBuffer(buffer);
 
@@ -734,7 +731,7 @@ public class Video {
                                     File file = new File(bmppath, MYCAPFile);
                                     try {
                                         saveBitmapToJPG(VideoBit, file);
-                                        Log.e("iMVR", "video-->fileName:" + MYCAPFile + "bmppath:" + bmppath);
+                                        Log.e("iMVR", "saveBitmapToJPG:" + MYCAPFile + "bmppath:" + bmppath);
                                     } catch (IOException e) {
                                         // TODO Auto-generated catch block
                                         e.printStackTrace();
@@ -743,7 +740,6 @@ public class Video {
                                 }
                             }
                         }
-
                         NalBuf[0] = 0;
                         NalBuf[1] = 0;
                         NalBuf[2] = 0;
@@ -771,6 +767,7 @@ public class Video {
             stopvideo = 0;
 
             Log.e("iMVR", "decoder over!\n");
+
         }
     };
 

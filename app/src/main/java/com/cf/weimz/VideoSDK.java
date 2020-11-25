@@ -42,7 +42,7 @@ public class VideoSDK extends Activity {
     public Video VideoDecoder;
     public ImageView mypictureView;
     private Button videobuttonCapture;
-
+    private Button test_crash;
     private Button videobuttonStart;
     private Button videobuttonStop;
     boolean running = false;
@@ -165,7 +165,7 @@ public class VideoSDK extends Activity {
             /**
              * when use the BM999 you may use those message,
              */
-          if (msg.what == 20) {  // left button
+            if (msg.what == 20) {  // left button
                 Log.e("iMVR", "============msg.what==20=================");
             }
             if (msg.what == 21) { //  right button
@@ -200,16 +200,29 @@ public class VideoSDK extends Activity {
         mypictureView = findViewById(R.id.mypicture);
         videobuttonStart = findViewById(R.id.face_startbtn);
         videobuttonStop = findViewById(R.id.face_stopbtn);
+        test_crash = findViewById(R.id.test_trash);
         toMain.setOnClickListener(v -> {
             unregisterReceiver(mHomeKeyEventReceiver);
-        //    VideoDecoder.StopKeyThread();
-        //    VideoDecoder.StopVideo();
-       //     running = false;
+            VideoDecoder.StopKeyThread();
+            VideoDecoder.StopVideo();
+            running = false;
             startActivity(new Intent(this, FacedetectActivity.class));
             finish();
         });
-
-        mSurfaceView.setOnTouchListener((View.OnTouchListener) (v, event) -> {
+        test_crash.setOnClickListener(v -> {
+            for (int i = 0; i < 10; i++) {
+                try {
+                    Thread.sleep(1000);
+                    StopVideo();
+                    Thread.sleep(1000);
+                    StartVideo();
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+/*
+        mSurfaceView.setOnTouchListener((v, event) -> {
             if (event.getAction() == MotionEvent.ACTION_DOWN) {
                 if (isAll) {
                     Log.e("videosdk", "onCreate: 点击退出全屏。。。");
@@ -226,6 +239,7 @@ public class VideoSDK extends Activity {
             }
             return true;
         });
+*/
 
 
         videobuttonCapture.setOnClickListener(new Button.OnClickListener() {
@@ -239,24 +253,18 @@ public class VideoSDK extends Activity {
         videobuttonStart.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) //
             {
-                VideoDecoder.FindDevice();
-                Log.e("iMVR", "start video");
-                if (!running) {
-                    running = true;
-                    VideoDecoder.StartKeyThread();  //
-                    VideoDecoder.StartVideoThread();//
+                if (VideoDecoder.FindDevice() == 1) {
+                    Log.e("TAG", "onClick: find device ok");
                 }
+                Log.e("iMVR", "start video");
+                StartVideo();
             }
         });
         videobuttonStop.setOnClickListener(new Button.OnClickListener() {
             public void onClick(View v) //
             {
                 Log.e("iMVR", "stop video");
-                if (running) {
-                    VideoDecoder.StopKeyThread(); //
-                    VideoDecoder.StopVideo(); //
-                    running = false;
-                }
+                StopVideo();
             }
         });
 
@@ -288,6 +296,25 @@ public class VideoSDK extends Activity {
         }*/
         ///////////////////////////////////////////////////////////////////////
         StartCodec();
+    }
+
+    public void StopVideo() {
+        if (running) {
+            VideoDecoder.StopVideo();
+            VideoDecoder.StopKeyThread();
+        }
+        running = false;
+    }
+
+    public void StartVideo() {
+        if (running) {
+            VideoDecoder.StopKeyThread();
+            VideoDecoder.StopVideo();
+            running = false;
+        }
+        VideoDecoder.StartVideo();
+        VideoDecoder.StartKeyThread();
+        running = true;
     }
 
     public void StopCodec() {
@@ -324,9 +351,7 @@ public class VideoSDK extends Activity {
 
     public boolean onKeyDown(int keyCode, KeyEvent event) {
         if (keyCode == KeyEvent.KEYCODE_BACK || keyCode == KeyEvent.KEYCODE_HOME) {
-
             unregisterReceiver(mHomeKeyEventReceiver);
-
             VideoDecoder.StopKeyThread(); //stop key  thread
             VideoDecoder.StopVideo(); //stop  video thread
             //   StopCodec();
